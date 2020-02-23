@@ -1,0 +1,23 @@
+
+NameError: name 'pymysql' is not defined
+	REMOVED: import pymysql.cursors
+pymysql.err.OperationalError: (1045, "Access denied for user 'roots'@'localhost' (using password: YES)")
+	CHANGED ROOT TO ROOTS: user = 'roots', 
+localhost refused to connect - due to unexpected indent
+	REMOVED IF STATEMENT: if query.lower().find("insert") >= 0:
+NameError: name 'MySQLConnection' is not defined
+	CHANGED NAME TO MySQLConnect - class MySQLConect:
+SyntaxError: invalid syntax
+	REMOVED ENTIRE IF STATEMENT
+	if query.lower().find("insert") >= 0:
+                    self.connection.commit()
+                    return cursor.lastrowid
+Something went wrong name 'result' is not defined
+	CHANGED result to results
+	results = cursor.fetchall()
+                    return result
+SyntaxError: invalid syntax
+	CHANGED () TO []
+	result = cursor.fetchall[]
+IdentationError: unindent does not match any outer indentation level
+	REMOVED: try:

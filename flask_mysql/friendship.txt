@@ -1,0 +1,47 @@
+SELECT user2.first_name, user2.last_name, users.first_name as friend_first_name, users.last_name as friend_last_name FROM users
+LEFT JOIN friendships ON friendships.friend_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.user_id
+WHERE user2.first_name IS NOT NULL;
+
+ADDITIONAL ASSIGNMENTS
+1.
+SELECT user2.first_name, user2.last_name FROM users
+LEFT JOIN friendships ON friendships.friend_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.user_id
+WHERE user2.first_name IS NOT NULL AND users.first_name = "Kermit" AND users.last_name = "The Frog";
+
+2.
+SELECT count(user_id) as friend_count FROM friendships;
+
+3.
+SELECT users.first_name, users.last_name, count(user_id) as friend_count FROM friendships
+JOIN users ON users.id = friendships.user_id
+GROUP BY user_id
+ORDER BY friend_count DESC
+LIMIT 1;
+
+4.
+INSERT INTO users (id, first_name, last_name) VALUES ('6', 'Nicole', 'Hendry');
+INSERT INTO friendships (id, user_id, friend_id) VALUES ('7', '6', '2');
+INSERT INTO friendships (id, user_id, friend_id) VALUES ('8', '6', '4');
+INSERT INTO friendships (id, user_id, friend_id) VALUES ('9', '6', '5');
+SELECT user2.first_name, user2.last_name, users.first_name as friend_first_name, users.last_name as friend_last_name FROM users
+LEFT JOIN friendships ON friendships.friend_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.user_id
+WHERE user2.first_name IS NOT NULL;
+
+5.
+SELECT user2.first_name, user2.last_name, users.first_name as friend_first_name, users.last_name as friend_last_name FROM users
+LEFT JOIN friendships ON friendships.friend_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.user_id
+WHERE user2.first_name = "Eli" AND user2.last_name = "Byers"
+ORDER BY users.first_name;
+
+6.
+DELETE FROM friendships WHERE user_id = "2" AND friend_id = "5"
+
+7.
+SELECT user2.first_name, user2.last_name, users.first_name as friend_first_name, users.last_name as friend_last_name FROM users
+LEFT JOIN friendships ON friendships.friend_id = users.id
+LEFT JOIN users as user2 ON user2.id = friendships.user_id
+WHERE user2.first_name IS NOT NULL;

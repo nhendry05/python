@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <form action = '/results' method='post'>
+            <div class="form-group row">
+                <label for = "name" class = "col-sm-3 col-form-label">Your Name:</label>
+                <div class = "col-sm-5">
+                    <input type = "text" class = "form-control" name = "name">
+                </div>
+            </div>
+            <div class = "form-group row">
+                <label for = "location" class = "col-sm-3 col-form-label">Location:</label>
+                <div class = "col-sm-5">
+                    <select name = "location">
+                        <option value = "San Jose">San Jose</option>
+                        <option value = "Orange County">Orange County</option>
+                        <option value = "Seattle">Seattle</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "form-group row">
+                <label for = "language" class = "col-sm-3 col-form-label">Language:</label>
+                <div class = "col-sm-5">
+                    <select name = "language">
+                        <option value = "Python">Python</option>
+                        <option value = "JavaScript">JavaScript</option>
+                        <option value = "Java">Java</option>
+                        <option value = "C">C</option>
+                    </select>
+                </div>
+            </div>
+            <div class = "form-group row">
+                <label for = "campusOnline" class = "col-sm-3 col-form-label">On Campus/Online</label>
+                <div class = "form-check form-check-inline">
+                    <input class = "form-check-input" type = "radio" id = "radio1" name = "campusOnline" value="On Campus">
+                    <label class = "form-check-label" for = "radio1">On Campus</label>
+                </div>
+                <div class = "form-check form-check-inline">
+                    <input class = "form-check-input" type = "radio" id = "radio2" name = "campusOnline" value="Online">
+                    <label class = "form-check-label" for = "radio2">Online</label>
+                </div>
+            </div>
+            <div class = "form-group row">
+                    <label for = "complete" class = "col-sm-3 col-form-label">Completed Sections:</label>
+                    <div class = "form-check form-check-inline">
+                        <input class = "form-check-input" type = "checkbox" id = "check1" name = "complete" value="HTML">
+                        <label class = "form-check-label" for = "check1">HTML</label>
+                    </div>
+                    <div class = "form-check form-check-inline">
+                        <input class = "form-check-input" type = "checkbox" id = "check2" name = "complete" value="css">
+                        <label class = "form-check-label" for = "check2">CSS</label>
+                    </div>
+                    <div class = "form-check form-check-inline">
+                        <input class = "form-check-input" type = "checkbox" id = "check3" name = "complete" value="JavaScript">
+                        <label class = "form-check-label" for = "check3">JavaScript</label>
+                    </div>
+                    <div class = "form-check form-check-inline">
+                        <input class = "form-check-input" type = "checkbox" id = "check4" name = "complete" value="Python">
+                        <label class = "form-check-label" for = "check4">Python</label>
+                    </div>
+                </div>
+                
+            <div class = "form-group">
+                <label for = "comment">Comment (optional):</label>
+                <textarea class = "form-control" name = "comment" rows = "3"></textarea>
+            </div>
+            <button  class="btn btn-primary" value = "info">Button</button>
+        </form>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

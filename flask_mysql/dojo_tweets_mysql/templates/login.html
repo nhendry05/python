@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <h1>Hello {{ user_data['first_name'] }}</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action = "/add_tweet" method = "POST">
+            <div class = "form-group col-sm-6">
+                <label for = "tweet_content"><h2>Write a Tweet:</h2></label>
+                <textarea placeholder = "Your tweet here..." class = "form-control" rows = "5" name = "tweet_content"></textarea>
+                <input type = "submit" value = "Submit">
+            </div>
+        </form>
+        <div>
+            <h2>Your Feed:</h2>
+            {% for tweet in all_tweets %}
+            <div class = "form-group col-sm-4 offset-1 border border-secondary bg-white">
+                    <h5>{{tweet['first_name']}} {{tweet['last_name']}} says:</h5>
+                    <p>{{tweet['content']}}</p>
+                    {% if now.day == tweet['created_at'].day %}
+                        {% if now.hour - tweet['created_at'].hour == 0 %}
+                            <p>posted {{now.minute - tweet['created_at'].minute}} minutes ago</p>
+                        {% elif  now.hour - tweet['created_at'].hour == 1 %}
+                            <p>posted {{now.hour - tweet['created_at'].hour}} hour ago</p>
+                        {% elif  now.hour - tweet['created_at'].hour > 1 %}
+                            <p>posted {{now.hour - tweet['created_at'].hour}} hours ago</p>
+                        {% endif %}
+                    {% elif now.day != tweet['created_at'].day %}
+                        <p>posted {{now.day - tweet['created_at'].day}} days ago</p>
+                    {% endif %}
+
+            </div>
+            {% endfor %}
+        </div>
+        
+        
+
+        <a href = "/logout"><button type="button">Log Out</button></a>
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

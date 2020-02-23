@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <!--Navigation Bar-->
+        <nav class = "navbar navbar-light">
+            <div class = "ml-sm-2">
+                <h6 class="d-inline">Enhanced Wall</h6>
+                <a href = "/landing"><button type = "button">Wall</button></a>
+            </div>
+            <div class = "mr-sm-2">
+                <h6 class= "d-inline">Welcome, {{ user_data['first_name'] }}</h6>
+                <a href = "/logout"><button type="button">Log Out</button></a>
+            </div>
+        </nav>
+        <h5>Message: {{detail_message['content']}}</h5>
+        <p>Author: {{detail_message['first_name']}} {{detail_message['last_name']}}</p>
+        {% if detail_message['message_id'] in liked_messages %}
+        <p><a href = "/details/unlike/{{ detail_message['message_id'] }}">UNLIKE</a></p>
+        {% else %}
+        <p><a href = "/details/like/{{ detail_message['message_id'] }}">LIKE</a></p>
+        {% endif %}
+        <h5>List of Likes</h5>
+        <!--Displays users names that have liked the message-->
+        <!--Display the author of the message last (if they liked there own message)-->
+        {% for user in like_list %}
+            {% if user['user_like'] != detail_message['user_id'] %}
+                <p>{{user['first_name']}} {{user['last_name']}}</p>
+            {% endif %}
+        {% endfor %}
+        {% for user in like_list %}
+            {% if user['user_like'] == detail_message['user_id'] %}
+                <p>{{user['first_name']}} {{user['last_name']}}</p>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+1. 
+SELECT countrycode, language, percentage FROM countrylanguage
+WHERE language LIKE "Slovene"
+ORDER BY percentage DESC;
+
+2.
+SELECT country.name, count(city.name) as count FROM city
+JOIN country on city.countryCode = country.code
+GROUP BY countryCode
+ORDER BY count DESC;
+
+3.
+SELECT * FROM city
+WHERE CountryCode LIKE "MEX" AND population > 500000
+ORDER BY population DESC;
+
+4.
+SELECT * FROM countrylanguage
+WHERE percentage > 89
+ORDER BY percentage DESC;
+
+5.
+SELECT * FROM country
+WHERE SurfaceArea < 501 AND population>100000;
+
+6.
+SELECT * FROM country
+WHERE GovernmentForm LIKE "Constitutional Monarchy"
+AND Capital > 200 AND LifeExpectancy > 75;
+
+7.
+SELECT country.name, city.name, city.district, city.population FROM city
+JOIN country on city.CountryCode = country.code
+WHERE countryCode LIKE "ARG"
+AND district LIKE "Buenos Aires"
+AND city.population > 500000;
+
+8.
+SELECT region, count(name) as count_country FROM country
+GROUP BY region
+ORDER BY count_country DESC;

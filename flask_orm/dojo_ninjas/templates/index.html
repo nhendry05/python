@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "row col-sm-9 offset-2">
+            <div class = "col-sm">
+                <h3>Add a Dojo</h3>
+                <form action = "/add_dojo", method = 'POST' >
+                    <div class="form-row">
+                        <div class = "form-group col-sm-8">
+                            <label for="dojo_name" class="d-inline-block">Name:</label>
+                            <input type = "text" class ="form-control" name="dojo_name">
+                            <label for="city" class="d-inline-block">City:</label>
+                            <input type = "text" class ="form-control" name="city">
+                            <label for="state" class="d-inline-block">State:</label>
+                            <input type = "text" class ="form-control" name="state">
+                            <input type = "submit" value = "Add">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class = "col-sm">
+                <h3>Add a Ninja</h3>
+                <form action = "/add_ninja", method = 'POST'>
+                    <div class="form-row">
+                        <div class = "form-group col-sm-8">
+                            <label for="fname" class="d-inline-block">First Name:</label>
+                            <input type = "text" class ="form-control" name="fname">
+                            <label for="lname" class="d-inline-block">Last Name:</label>
+                            <input type = "text" class ="form-control" name="lname">
+                            <label class = "d-inline-block" for="dojo_id">Dojo:</label>
+                            <select class="custom-select" name = "dojo_id">
+                                <option selected>-select a dojo-</option>
+                                {% for dojo in all_dojos %}
+                                <option value="{{ dojo['name'] }}">{{ dojo['name'] }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type = "submit" value = "Add">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <div class = "col-sm-6 offset-3">
+            <h3 class = "text-center">All the Dojos</h3>
+            <div class = "offset-3">
+                {% for dojo in all_dojos %}
+                <p class = "font-weight-bold">Ninjas at the {{ dojo['name'] }} </p>
+                    <ul>
+                    {% for ninja in all_ninjas %}
+                        {% if ninja['dojo_id'] == dojo['name'] %}
+                            <li>{{ ninja['first_name'] }} {{ ninja['last_name'] }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

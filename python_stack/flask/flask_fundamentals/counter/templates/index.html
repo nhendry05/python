@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <h1>Visited {{ key_name_on_template }} Times</h1>
+        <form action="/increase_two" method = "post">
+            <button>Increase by 2</button>
+        </form>
+        <form action="/destroy_session" method = "post">
+            <button>Reset</button>
+        </form>
+    </div>
+
+</body>
+</html>

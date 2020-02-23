@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <nav class = "navbar navbar-light">
+            <div class = "ml-sm-2">
+                <h6 class="d-inline">Dojo Tweets</h6>
+                <a class = "ml-3" href = "/tweets"><button>Dashboard</button></a>
+                <a class = "ml-3" href = "/users"><button>Users</button></a>
+            </div>
+            <div class = "mr-sm-2">
+                <h6 class= "d-inline">Welcome, {{ user_data['first_name'] }}</h6>
+                <a href = "/logout"><button type="button">Log Out</button></a>
+            </div>
+        </nav>
+        <h2>Followers:</h2>
+        <table class = "table">
+            <thead>
+                <tr>
+                    <th scope = "col">Name</th>
+                    <th scope = "col">Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in following_user %}
+                <tr>
+                    <td>{{ user['first_name'] }} {{ user['last_name'] }}</td>
+                    <td>{{ user['email'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

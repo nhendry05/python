@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <nav class = "navbar navbar-light">
+            <h6 class="d-inline">Dojo Tweets</h6>
+            <div class = "mr-sm-2">
+                <h6 class= "d-inline">Welcome, {{ user_data['first_name'] }}</h6>
+                <a href = "/logout"><button type="button">Log Out</button></a>
+            </div>
+        </nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <form action = "/add_tweet" method = "POST">
+            <div class = "form-group col-sm-6">
+                <label for = "tweet_content"><h2>Write a Tweet:</h2></label>
+                <textarea placeholder = "Your tweet here..." class = "form-control" rows = "5" name = "tweet_content"></textarea>
+                <input type = "submit" value = "Submit">
+            </div>
+        </form>
+        <div>
+            <h2>Your Feed:</h2>
+            {% for tweet in all_tweets %}
+            <div class = "form-group col-sm-4 offset-1 border border-secondary bg-white">
+                    <h5>{{tweet['first_name']}} {{tweet['last_name']}} says:</h5>
+                    <p>{{tweet['content']}}</p>
+                    {% if now.day == tweet['created_at'].day %}
+                        {% if now.hour - tweet['created_at'].hour == 0 %}
+                            {% if now.minute - tweet['created_at'].minute == 1 %}
+                                <p>posted {{now.minute - tweet['created_at'].minute}} minute ago</p>
+                            {% elif now.minute - tweet['created_at'].minute > 1 %}
+                                <p>posted {{now.minute - tweet['created_at'].minute}} minutes ago</p>
+                            {% endif %}
+                        {% elif  now.hour - tweet['created_at'].hour == 1 %}
+                            <p>posted {{now.hour - tweet['created_at'].hour}} hour ago</p>
+                        {% elif  now.hour - tweet['created_at'].hour > 1 %}
+                            <p>posted {{now.hour - tweet['created_at'].hour}} hours ago</p>
+                        {% endif %}
+                    {% elif now.day != tweet['created_at'].day %}
+                        <p>posted {{now.day - tweet['created_at'].day}} days ago</p>
+                    {% endif %}
+                    <p> {{tweet['like_count']}} likes</p>
+
+                    <div class = "text-right">
+                        {% if user_data['id_user'] == tweet['author'] %}
+                            <p class = "d-inline cm-sm-10"><a href = "/tweets/{{ tweet['id_tweet'] }}/delete"><button>DELETE</button></a></p>
+                        {% endif %}
+                        {% if tweet['id_tweet'] in liked_tweets %}
+                        <p class = "d-inline col-sm-10"><a href = "/tweets/{{ tweet['id_tweet'] }}/unlike"><button>UNLIKE</button></a></p>
+                        {% else %}
+                        <p class = "d-inline col-sm-10"><a href = "/tweets/{{ tweet['id_tweet'] }}/add_like"><button>LIKE</button></a></p>
+                        {% endif %}
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+   <h1 class = "text-center">All the Users</h1>
+   <table class = "table table-striped">
+       <thead class="thead-light">
+           <tr>
+               <th scope = "col">ID</th>
+               <th scope = "col">Name</th>
+               <th scope = "col">Email</th>
+               <th scope = "col">Age</th>
+           </tr>
+       </thead>
+       <tbody>
+        {% for user in all_users %}
+           <tr>
+               <th scope="row">{{ user['id'] }}</th>
+               <th scope="row">{{ user['first_name'] }} {{ user['last_name'] }}</th>
+               <th scope="row">{{ user['email'] }}</th>
+               <th scope="row">{{ user['age'] }}</th>
+           </tr>
+        {% endfor %}
+       </tbody>
+   </table>
+   <hr>
+   <h1 class = "text-center">Add a User</h1>
+   <form action = "/add", method = 'POST' class = " offset-3">
+        <div class="form-row">
+            <div class = "form-group col-md-4">
+                <label for="fname" class="d-inline-block">First Name:</label>
+                <input type = "text" class ="form-control d-inline-block" name="fname">
+            </div>
+            <div class = "form-group col-md-4">
+                <label for="lname">Last Name:</label>
+                <input type = "text" class ="form-control" name="lname">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class = "form-group col-md-4">
+                <label for="email">Email:</label>
+                <input type = "text" class ="form-control" name="email">
+            </div>
+            <div class = "form-group col-md-4">
+                <label for="age">Age:</label>
+                <input type = "text" class ="form-control" name="age">
+            </div>
+        </div>
+        <input type = "submit" value = "Add">
+   </form>
+
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

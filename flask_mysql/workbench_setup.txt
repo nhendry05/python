@@ -1,0 +1,7 @@
+USE twitter;
+SELECT * FROM tweets;
+INSERT INTO tweets (tweet, user_id, created_at, updated_at)
+VALUES ("This is Coding Dojo!", 1, NOW(), NOW());
+SELECT * FROM tweets;
+DELETE FROM tweets WHERE (id=13);
+SELECT * FROM tweets;

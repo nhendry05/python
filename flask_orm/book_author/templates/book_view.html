@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <h3>{{ book_with_id['title'] }}</h3>
+        <p>ID {{ book_with_id['id'] }}</p>
+        <div class = "row">
+            <p class = "col-sm-2">Description:</p>
+            <p class = "col-sm-6">{{ book_with_id['description'] }}</p>
+        </div>
+        <p>Authors:</p>
+        <ul>
+           <li>AUTHOR</li>
+           <li class="list-unstyled">
+            <form action = "/book_to_author/{{ book_with_id['id'] }}" method = 'POST'>
+                <select class="custom-select mr-sm-2" name="new_author">
+                    <option selected>-select an author-</option>
+                    {% for author in all_authors %}
+                    <option value="{{ author['id'] }}">{{ author['first_name'] }} {{ author['last_name'] }}</option>
+                    {% endfor %}
+                </select>
+                <input type = "submit" class = "offset-4" value = "Add">
+            </form>
+            </li>
+        </ul>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

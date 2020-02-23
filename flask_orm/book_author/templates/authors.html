@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <h1>Add an Author</h1>
+        <div class = "row">
+            <div class = "col-sm-6">
+                <form action = "add_author" method = 'POST'>
+                    <div class = "form-group row">
+                        <label for="fname" class="col-sm-4 col-form-label">First Name:</label>
+                        <input type = "text" class="col-sm-6" name="fname">
+                    </div>
+                    <div class = "form-group row">
+                        <label for="lname" class="col-sm-4 col-form-label">Last Name:</label>
+                        <input type = "text" class="col-sm-6" name="lname">
+                    </div>
+                    <div class = "form-group row">
+                        <label for="notes" class="col-sm-4 col-form-label">Notes:</label>
+                        <textarea class="form-control col-sm-6" rows="3" name="notes"></textarea>
+                    </div>
+                    <input type = "submit" class = "offset-4" value = "Add">
+                </form>
+            </div>
+            <div class = "col-sm-6">
+                <table class = "table col-sm-8 ">
+                    <thead class = "thead-light">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for author in all_authors %}
+                        <tr>
+                            <td>{{ author['id'] }}</td>
+                            <td>{{ author['first_name'] }} {{ author['last_name'] }}</td>
+                            <td><a href = "/authors/{{author['id']}}">View</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

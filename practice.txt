@@ -1,0 +1,58 @@
+//Nicole Hendry
+//Practice pip and virtual environments
+
+pip install Django==1.11.9
+
+--This installs Django
+
+pip list
+
+--Lists installed packages
+Package    Version
+---------- -------
+Django     1.11.9
+pip        19.3.1
+pytz       2019.3
+setuptools 42.0.2
+wheel      0.33.6
+
+deactivate
+
+--deactivates the virtual environment
+
+pip3 list 
+
+--django was deactivated because it existed in the virtual environment(which was deactivated)
+Package    Version
+---------- -------
+pip        19.3.1
+setuptools 41.2.0
+virtualenv 16.7.8
+
+source myEnvironments/py3Env/bin/activate
+
+--activates virtual environment
+
+pip install Django==1.11.9
+
+-"Requirement already satisfied" --Django was already installed in the virtual environment
+
+pip freeze
+
+--freeze lists the packages installed in virtual environment, list lists all of the packages.
+
+First cd into your Desktop directory (cd ~/Desktop), then run this command: pip freeze > requirements.txt. What do you see when you ls? What's inside this file?
+
+--pip freeze > requirements.txt added a txt file to the desktop, and dir(ls) shows all of the files in the desktop
+
+pip uninstall Django
+
+--uninstalled Django
+
+pip show Django
+
+--error message -- Packages not found: Django
+
+pip search Flask This one might take a moment to execute.
+
+--searches for packages that contain "flask" in the name or summary

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container bg-light">
+        <!--Navigation Bar-->
+        <nav class = "navbar navbar-light">
+            <div class = "ml-sm-2">
+                <h6 class="d-inline">Enhanced Wall</h6>
+            </div>
+            <div class = "mr-sm-2">
+                <h6 class= "d-inline">Welcome, {{ user_data['first_name'] }}</h6>
+                <a href = "/logout"><button type="button">Log Out</button></a>
+            </div>
+        </nav>
+        <!--Form to Add a New Message-->
+        <form action = "/add" method = "POST">
+            <div class = "form-group col-sm-6">
+                <label for = "message"><h2>Add a Message:</h2></label>
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <textarea placeholder = "Your Message Here..." class = "form-control" rows = "5" name = "message"></textarea>
+                <input type = "submit" value = "Submit">
+            </div>
+        </form>
+        <!--Table of All Messages-->
+        <h2>All Messages</h2>
+        <table class = "table">
+            <thead>
+                <tr>
+                    <th scope = "col">Name</th>
+                    <th scope = "col">Message</th>
+                    <th scope = "col">Number of Likes</th>
+                    <th scope = "col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in all_messages|sort(attribute='like_count', reverse = True) %}
+                <!--SORT table in descending order based on LIKE_COUNT. if you want ascending, remove reverse = True-->
+                <tr>
+                    <td> {{ message['first_name'] }} {{ message['last_name'] }}</td>
+                    <td> {{ message['content'] }}</td>
+                    <td> {{ message['like_count'] }}</td>
+                    <td>
+                        <a href = "/details/{{message['message_id']}}">DETAILS</a>
+                        {% if user_data['user_id'] == message['author'] %}
+                        <a class = "offset-2" href = "/delete/{{message['message_id']}}">DELETE</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>

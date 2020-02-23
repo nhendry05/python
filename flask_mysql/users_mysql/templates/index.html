@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class = "container">
+        <div class = "bg-light text-secondary">
+            <h1 class = "text-center">All Users</h1>
+            <table class = "table">
+                <thead class = "thead-dark">
+                    <tr>
+                        <th scope = "col">ID</th>
+                        <th scope = "col">Full Name</th>
+                        <th scope = "col">Email</th>
+                        <th scope = "col">Description:</th>
+                        <th scope = "col">Created At</th>
+                        <th scope = "col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for one_friend in all_friends %}
+                    <tr>
+                        <th scope = "row">{{one_friend['friend_id']}}</th>
+                            <td>{{one_friend['first_name']}} {{one_friend['last_name']}}</td>
+                            <td>{{one_friend['email']}}</td>
+                            <td>{{one_friend['description']}}</td>
+                            <td>{{one_friend['created_at']}}</td>
+                            <td><a href = "/users/{{ one_friend['friend_id'] }}">SHOW </a><a href = "/users/edit/{{ one_friend['friend_id'] }}">EDIT </a><a href = "/users/destroy/{{ one_friend['friend_id'] }}">DELETE</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+        <p><a href = "/users/new">Add a New User</p>
+        
+        </div>
+    </div>
+
+    
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
